@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Get all Enquire buttons (replace '.enquire-button' with the actual class of the button if different)
+    var enquireButtons = document.querySelectorAll('.single_add_to_cart_button');
+    
+    // Add click event listener to each button
+    enquireButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            // Get the product name from the page (adjust the selector to match the actual HTML)
+            var productNameElement = document.querySelector('.product_title');
+            var productName = productNameElement ? productNameElement.textContent : 'Product Name';
+
+            // Set the value in the Contact Form 7 product name field
+            var productField = document.querySelector('[name="product-name"]');
+            if (productField) {
+                productField.value = productName;
+            }
+
+            // Trigger the popup (replace with your actual Popup Maker ID)
+            PUM.open(5180); // Change 5180 to your actual popup ID
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

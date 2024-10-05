@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+/* Popup box maker border fix  */
+
+.pum-theme-5166 .pum-container, .pum-theme-lightbox .pum-container {
+    padding: 18px;
+    border-radius: 3px;
+    border: 3px solid #000000 !important;
+    box-shadow: 0px 0px 30px 0px rgba(2, 2, 2, 1.00);
+    background-color: rgba(255, 255, 255, 1.00);
+}
+
+        /* Style for labels */
+label {
+  font-size: 17px;
+  color: #333;
+  display: block;
+  margin-bottom: 10px !important;
+  font-weight: normal !important;
+  text-transform: uppercase;
+  padding-bottom: 4px !important;
+}
+
+/* Style for input fields */
+input[type="text"], input[type="email"], input[type="number"], textarea {
+  
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100% !important;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, textarea:focus {
+  width: 100% !important;
+  border-color: #FF6600;
+  box-shadow: 0 0 8px rgba(255, 102, 0, 0.5);
+}
+
+/* Style for submit button with hover and animation */
+input[type="submit"] {
+  width: 100% !important;
+  background-color: #FF6600 !important;
+  color: white;
+  padding: 12px 25px;
+  border: none !important;
+  border-radius: 0px;
+  cursor: pointer;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #000080 !important;
+  transform: translateY(-3px);
+}
+
+/* Submit button hover animation */
+input[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* Adding fade-in animation to form elements */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+input, textarea, label {
+  animation: fadeIn 0.6s ease-in-out;
+}
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
