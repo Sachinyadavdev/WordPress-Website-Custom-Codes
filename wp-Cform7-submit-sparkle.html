@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form 7 Submit Sparkle Effect Code</title>
+    <style>
+      /* Flower and Petals container */
+      .sparkle-effect {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 10000; /* Ensures flowers are above other elements */
+      }
+
+      /* Flower styles */
+      .flower {
+        position: absolute;
+        opacity: 0; /* Start invisible */
+        animation: flowerAnimation 2s ease-out forwards;
+      }
+
+      /* Flower Animation */
+      @keyframes flowerAnimation {
+        0% {
+          transform: scale(0) translateY(0);
+          opacity: 1; /* Fully visible at start */
+        }
+        50% {
+          opacity: 1; /* Stay visible in the middle */
+        }
+        100% {
+          transform: scale(1.2) translateY(-300px); /* Scale and move up */
+          opacity: 0; /* Fade out at the end */
+        }
+      }
+
+      /* Customize flower SVG styles */
+      svg {
+        display: block; /* Ensure no extra spacing around SVG */
+        max-width: 100%; /* Make flowers responsive */
+        max-height: 100%; /* Make flowers responsive */
+      }
+
+      /* Optional: Add styles for flower center or petal effects */
+      /* You can also adjust the stroke or shadow effects here */
+    </style>
+  </head>
+  <body>
+    <h2>
+      This is the Contact Form 7 Submit Button Effect you can replace the svg
+      img
+    </h2>
+
+    <script>
+      document.addEventListener(
+        "wpcf7mailsent",
+        function (event) {
+          triggerPartyEffect(); // Trigger flower effect on form submission
+
+          function triggerPartyEffect() {
+            const flowerContainer = document.createElement("div");
+            flowerContainer.classList.add("sparkle-effect");
+            document.body.appendChild(flowerContainer);
+
+            const totalFlowers = 300; // Total flower particles
+            for (let i = 0; i < totalFlowers; i++) {
+              const flower = document.createElement("div");
+              flower.classList.add("flower"); // Assign flower class
+
+              // Create SVG Flower
+              flower.innerHTML = `
+            <svg width="30" height="30" viewBox="0 0 30 30">
+                <g fill="none" stroke="none" stroke-width="1">
+                    <path d="M15 0C16.736 0 18.251 0.65 19.243 1.707C20.235 2.764 20.668 4.234 20.383 5.666C20.097 7.098 18.751 8 18.071 8C17.391 8 17.276 6.648 16.548 6.648C15.82 6.648 15.648 8 15.648 8C15.648 8 15.476 6.648 14.748 6.648C14.02 6.648 13.905 8 13.225 8C12.545 8 11.685 7.098 11.399 5.666C11.113 4.234 11.546 2.764 12.538 1.707C13.527 0.65 15.042 0 15 0Z" fill="#FF69B4"/>
+                    <path d="M15 30C13.264 30 11.749 29.35 10.757 28.293C9.765 27.236 9.332 25.766 9.617 24.334C9.903 22.902 11.249 22 11.929 22C12.609 22 12.724 23.352 13.452 23.352C14.18 23.352 14.352 22 14.352 22C14.352 22 14.524 23.352 15.252 23.352C15.98 23.352 16.095 22 16.775 22C17.455 22 18.315 22.902 18.601 24.334C18.887 25.766 18.454 27.236 17.462 28.293C16.474 29.35 14.958 30 15 30Z" fill="#FF69B4"/>
+                    <path d="M30 15C30 13.264 29.35 11.749 28.293 10.757C27.236 9.765 25.766 9.332 24.334 9.617C22.902 9.903 22 11.249 22 11.929C22 12.609 23.352 12.724 23.352 13.452C23.352 14.18 22 14.352 22 14.352C22 14.352 23.352 14.524 23.352 15.252C23.352 15.98 22 16.095 22 16.775C22 17.455 22.902 18.315 24.334 18.601C25.766 18.887 27.236 18.454 28.293 17.462C29.35 16.474 30 14.958 30 15Z" fill="#FF69B4"/>
+                    <path d="M0 15C0 16.736 0.65 18.251 1.707 19.243C2.764 20.235 4.234 20.668 5.666 20.383C7.098 20.097 8 18.751 8 18.071C8 17.391 6.648 17.276 6.648 16.548C6.648 15.82 8 15.648 8 15.648C8 15.648 6.648 15.476 6.648 14.748C6.648 14.02 8 13.905 8 13.225C8 12.545 7.098 11.685 5.666 11.399C4.234 11.113 2.764 11.546 1.707 12.538C0.65 13.527 0 15.042 0 15Z" fill="#FF69B4"/>
+                </g>
+            </svg>
+            `;
+
+              // Randomize positions and animation
+              flower.style.left = `${Math.random() * 100}vw`;
+              flower.style.top = `${Math.random() * 100}vh`;
+              flower.style.animationDelay = `${Math.random() * 0.5}s`; // Staggered animation start
+
+              flowerContainer.appendChild(flower);
+            }
+
+            // Remove the effects after animation ends
+            setTimeout(() => {
+              flowerContainer.remove();
+            }, 2500); // Duration for the flower effect
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
