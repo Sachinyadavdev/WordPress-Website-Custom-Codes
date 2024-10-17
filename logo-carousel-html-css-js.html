@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPac Logo Carousel</title>
+    <style>
+        .logo-carousel {
+    width: 100%;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    padding: 20px 0;
+}
+
+.logo-track {
+    display: flex;
+    width: calc(250px * 10); /* Adjust the width based on number of logos */
+    animation: scroll 20s linear infinite;
+}
+
+.logo-item {
+    width: 250px;
+    padding: 0 15px;
+}
+
+.logo-item img {
+    width: 100%;
+    display: block;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="logo-carousel">
+        <div class="logo-track">
+            <div class="logo-item"><img src="logo1.png" alt="Logo 1"></div>
+            <div class="logo-item"><img src="logo2.png" alt="Logo 2"></div>
+            <div class="logo-item"><img src="logo3.png" alt="Logo 3"></div>
+            <div class="logo-item"><img src="logo4.png" alt="Logo 4"></div>
+            <div class="logo-item"><img src="logo5.png" alt="Logo 5"></div>
+            <!-- Duplicate items for infinite scroll -->
+            <div class="logo-item"><img src="logo1.png" alt="Logo 1"></div>
+            <div class="logo-item"><img src="logo2.png" alt="Logo 2"></div>
+            <div class="logo-item"><img src="logo3.png" alt="Logo 3"></div>
+            <div class="logo-item"><img src="logo4.png" alt="Logo 4"></div>
+            <div class="logo-item"><img src="logo5.png" alt="Logo 5"></div>
+        </div>
+    </div>
+<script>
+    const track = document.querySelector('.logo-track');
+let speed = 1;
+
+function smoothScroll() {
+    let position = track.offsetLeft;
+    if (Math.abs(position) >= track.offsetWidth / 2) {
+        track.style.left = '0px'; // Reset position
+    }
+    track.style.left = (position - speed) + 'px';
+    requestAnimationFrame(smoothScroll);
+}
+
+smoothScroll();
+
+</script>    
+</body>
+</html>
