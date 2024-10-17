@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoPac Logo Carousel</title>
+    <style>
+      .logo-carousel {
+        width: 100%;
+        overflow: hidden;
+        background-color: #f6f6f6;
+        padding: 20px 0;
+        height: 150px; /* Set a fixed height */
+      }
+
+      .logo-track {
+        display: flex;
+        align-items: center;
+        width: calc(250px * 8); /* 4 logos repeated twice */
+        animation: scroll 20s linear infinite;
+      }
+
+      .logo-item {
+        width: 250px;
+        padding: 0 15px;
+      }
+
+      .logo-item a {
+        display: block;
+        text-decoration: none;
+      }
+
+      .logo-item img {
+        width: 100%;
+        display: block;
+        max-height: 100px;
+        object-fit: contain;
+        transition: transform 0.3s ease, filter 0.3s ease; /* Hover effect */
+      }
+
+      /* Hover effect: scale up and add brightness */
+      .logo-item img:hover {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+      }
+
+      /* Keyframes for smooth infinite scrolling */
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Stop scrolling on hover */
+      .logo-carousel:hover .logo-track {
+        animation-play-state: paused;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo-carousel">
+      <div class="logo-track">
+        <!-- First set of logos -->
+        <div class="logo-item">
+          <a
+            href="https://www.imaginetventures.in/projects/autopacsystems/brands/"
+            target="_blank"
+          >
+            <img
+              src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/Now-Systems-removebg-preview.png"
+              alt="Now Systems"
+            />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a
+            href="https://www.imaginetventures.in/projects/autopacsystems/brands/"
+            target="_blank"
+          >
+            <img
+              src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/pam.png"
+              alt="PAM Pacific"
+            />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a
+            href="https://www.imaginetventures.in/projects/autopacsystems/brands/"
+            target="_blank"
+          >
+            <img
+              src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/AMD.png"
+              alt="AMD"
+            />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a
+            href="https://www.imaginetventures.in/projects/autopacsystems/brands/"
+            target="_blank"
+          >
+            <img
+              src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/sapphire-logo-removebg-preview.png"
+              alt="Sapphire"
+            />
+          </a>
+        </div>
+
+        <!-- Second set of logos (duplicated for smooth infinite scroll) -->
+        <div class="logo-item">
+          <a
+            href="https://www.imaginetventures.in/projects/autopacsystems/brands/"
+            target="_blank"
+          >
+            <img
+              src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/Now-Systems-removebg-preview.png"
+              alt="Now Systems"
+            />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a
+            href="https://www.imaginetventures.in/projects/autopacsystems/brands/"
+            target="_blank"
+          >
+            <img
+              src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/pam.png"
+              alt="PAM Pacific"
+            />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a
+            href="https://www.imaginetventures.in/projects/autopacsystems/brands/"
+            target="_blank"
+          >
+            <img
+              src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/AMD.png"
+              alt="AMD"
+            />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a
+            href="https://www.imaginetventures.in/projects/autopacsystems/brands/"
+            target="_blank"
+          >
+            <img
+              src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/sapphire-logo-removebg-preview.png"
+              alt="Sapphire"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const track = document.querySelector(".logo-track");
+      let speed = 1;
+
+      function smoothScroll() {
+        let position = track.offsetLeft;
+        if (Math.abs(position) >= track.offsetWidth / 2) {
+          track.style.left = "0px"; // Reset position
+        }
+        track.style.left = position - speed + "px";
+        requestAnimationFrame(smoothScroll);
+      }
+
+      smoothScroll();
+    </script>
+  </body>
+</html>
