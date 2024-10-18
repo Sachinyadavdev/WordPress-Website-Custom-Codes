@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vertical Smooth Image Carousel</title>
+    <style>
+      .carousel {
+        width: 300px; /* Adjust based on your image width */
+        height: 600px; /* Adjust based on the height you want */
+        overflow: hidden;
+        position: relative;
+      }
+
+      .carousel-track {
+        display: flex;
+        flex-direction: column;
+        animation: scroll 50s linear infinite;
+      }
+
+      .carousel img {
+        width: 100%; /* Ensures the image takes up the full width of the container */
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .carousel img:hover {
+        transform: scale(1.05); /* Hover effect for zoom */
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-100%);
+        }
+      }
+
+      .carousel:hover .carousel-track {
+        animation-play-state: paused; /* Pauses the scrolling on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel">
+      <div class="carousel-track">
+        <a href="#">
+          <img
+            src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/G80_Dual_Beam_X_ray_System_Featured_image.png"
+            alt="Image 1"
+        /></a>
+        <img
+          src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/G80_Dual_Beam_X_ray_System_Featured_image.png"
+          alt="Image 2"
+        />
+        <img
+          src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/G80_Dual_Beam_X_ray_System_Featured_image.png"
+          alt="Image 3"
+        />
+        <img
+          src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/G80_Dual_Beam_X_ray_System_Featured_image.png"
+          alt="Image 4"
+        />
+        <img
+          src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/G80_Dual_Beam_X_ray_System_Featured_image.png"
+          alt="Image 5"
+        />
+        <img
+          src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/G80_Dual_Beam_X_ray_System_Featured_image.png"
+          alt="Image 6"
+        />
+        <img
+          src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/G80_Dual_Beam_X_ray_System_Featured_image.png"
+          alt="Image 7"
+        />
+        <img
+          src="https://www.imaginetventures.in/projects/autopacsystems/wp-content/uploads/2024/10/G80_Dual_Beam_X_ray_System_Featured_image.png"
+          alt="Image 8"
+        />
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const track = document.querySelector(".carousel-track");
+        const imgs = Array.from(track.children);
+        let cloneImgs = [];
+
+        // Clone images for infinite loop effect
+        imgs.forEach((img) => {
+          const clone = img.cloneNode(true);
+          track.appendChild(clone);
+          cloneImgs.push(clone);
+        });
+
+        // Reset animation after each cycle
+        track.addEventListener("animationiteration", () => {
+          track.style.animation = "none";
+          setTimeout(() => {
+            track.style.animation = "";
+          }, 10);
+        });
+      });
+    </script>
+  </body>
+</html>
