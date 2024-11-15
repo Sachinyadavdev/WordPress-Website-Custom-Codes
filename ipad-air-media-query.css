@@ -1,0 +1,12 @@
+/* 1. Portrait Mode */
+
+@media only screen and (min-device-width: 820px) and (max-device-width: 1180px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    /* Styles for iPad Air in portrait */
+}
+
+
+/* 2. Landscape Mode */
+
+@media only screen and (min-device-width: 820px) and (max-device-width: 1180px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    /* Styles for iPad Air in landscape */
+}

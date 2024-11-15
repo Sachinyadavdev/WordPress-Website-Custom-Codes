@@ -1,0 +1,13 @@
+
+/* 1. Portrait Mode */
+
+@media only screen and (min-device-width: 744px) and (max-device-width: 828px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    /* Styles for iPad Mini in portrait mode */
+}
+
+
+/* 2. Landscape Mode */
+
+@media only screen and (min-device-width: 744px) and (max-device-width: 828px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    /* Styles for iPad Mini in landscape mode */
+}

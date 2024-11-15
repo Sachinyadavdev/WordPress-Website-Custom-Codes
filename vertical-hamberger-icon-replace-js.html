@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vertical Hamburger Icon</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Basic reset and centering */
+      /* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+
+      /* Vertical Hamburger icon styling */
+      .hamburger {
+        display: flex;
+        gap: 5px; /* Space between the lines */
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 4px; /* Width for each vertical line */
+        height: 25px; /* Height for each line */
+        background-color: #333;
+        border-radius: 2px; /* Optional: round edges */
+        transition: background-color 0.3s;
+      }
+
+      .hamburger:hover span {
+        background-color: #555; /* Changes color on hover */
+      }
+
+      /* Only for reference  */
+      .hamburger[aria-expanded="true"] span {
+        background-color: red; /* Example style for inner spans */
+        /* Other styles */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <script>
+      // Get the element with class 'bars'
+      const barsElement = document.querySelector(".bars");
+
+      // Check if the element exists
+      if (barsElement) {
+        // Replace its content with the new HTML
+        barsElement.outerHTML = `
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    `;
+      }
+    </script>
+  </body>
+</html>
