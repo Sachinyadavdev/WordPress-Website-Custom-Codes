@@ -1,0 +1,29 @@
+/* 1. Portrait Mode */
+
+/* iPad Pro 11-inch and 12.9-inch Portrait */
+@media only screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5) {
+    /* Your styles here */
+}
+
+
+/* 2. Landscape Mode */
+
+/* iPad Pro 11-inch and 12.9-inch Landscape */
+@media only screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1.5) {
+    /* Your styles here */
+}
+
+
+/* iPad Pro Media Query */
+
+/* For iPad Pro in both landscape and portrait */
+@media only screen 
+  and (min-width: 1024px) 
+  and (max-width: 1366px) 
+  and (orientation: portrait), 
+only screen 
+  and (min-width: 1024px) 
+  and (max-width: 1366px) 
+  and (orientation: landscape) {
+    /* Your styles here */
+}
