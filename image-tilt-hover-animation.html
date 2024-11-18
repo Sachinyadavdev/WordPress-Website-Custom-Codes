@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .tilt-container {
+        perspective: 1000px;
+        width: 300px;
+        height: 400px;
+        margin: 50px auto;
+      }
+
+      .tilt-content {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .tilt-content img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none; /* Prevent image from interfering with hover */
+      }
+
+      .tilt-container:hover .tilt-content {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tilt-container">
+      <div class="tilt-content">
+        <img src="image-ex.jpg" alt="Tilt Image" />
+      </div>
+    </div>
+
+    <script>
+      const tiltContainer = document.querySelector(".tilt-container");
+
+      tiltContainer.addEventListener("mousemove", (e) => {
+        const rect = tiltContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left; // X-axis position
+        const y = e.clientY - rect.top; // Y-axis position
+
+        const xPercent = (x / rect.width - 0.5) * 30; // 30 degrees rotation max
+        const yPercent = -(y / rect.height - 0.5) * 30;
+
+        const tiltContent = tiltContainer.querySelector(".tilt-content");
+        tiltContent.style.transform = `rotateX(${yPercent}deg) rotateY(${xPercent}deg)`;
+      });
+
+      tiltContainer.addEventListener("mouseleave", () => {
+        const tiltContent = tiltContainer.querySelector(".tilt-content");
+        tiltContent.style.transform = "rotateX(0deg) rotateY(0deg)";
+      });
+    </script>
+  </body>
+</html>
