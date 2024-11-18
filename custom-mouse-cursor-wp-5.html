@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Hide the default cursor */
+body {
+  cursor: none;
+}
+
+/* Main cursor (inner dot) */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #1167B1; /* Neon pink */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+}
+
+/* Cursor outline (outer ring with trailing effect) */
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 0, 93, 0.6); /* Neon ring */
+  border-image: linear-gradient(45deg, #ff005d, #00f2ff) 1;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, border-color 0.3s ease;
+}
+
+/* Hover effect */
+.cursor.hover {
+  background-color: rgba(86, 0, 0, 0.9); /* Bright center */
+}
+
+.cursor-outline.hover {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 0, 93, 1); /* Stronger neon */
+}
+
+    </style>
+</head>
+<body>
+    
+    <script>
+        // Create the cursor elements dynamically
+const cursor = document.createElement('div');
+const outline = document.createElement('div');
+
+// Add classes to the elements
+cursor.classList.add('cursor');
+outline.classList.add('cursor-outline');
+
+// Append to the body
+document.body.appendChild(cursor);
+document.body.appendChild(outline);
+
+// Position variables
+let cursorX = 0;
+let cursorY = 0;
+let outlineX = 0;
+let outlineY = 0;
+
+// Update cursor position immediately
+document.addEventListener('mousemove', (e) => {
+  cursorX = e.clientX;
+  cursorY = e.clientY;
+
+  cursor.style.top = `${cursorY}px`;
+  cursor.style.left = `${cursorX}px`;
+});
+
+// Animate the outline with a delay
+function animateCursor() {
+  // Gradually move the outline closer to the cursor
+  outlineX += (cursorX - outlineX) * 0.15; // Adjust "0.15" for smoother or faster trailing
+  outlineY += (cursorY - outlineY) * 0.15;
+
+  outline.style.top = `${outlineY}px`;
+  outline.style.left = `${outlineX}px`;
+
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Add hover effects on interactive elements
+document.querySelectorAll('a, button, input').forEach((element) => {
+  element.addEventListener('mouseenter', () => {
+    cursor.classList.add('hover');
+    outline.classList.add('hover');
+  });
+
+  element.addEventListener('mouseleave', () => {
+    cursor.classList.remove('hover');
+    outline.classList.remove('hover');
+  });
+});
+
+    </script>
+</body>
+</html>

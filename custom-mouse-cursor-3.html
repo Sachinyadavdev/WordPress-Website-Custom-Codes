@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Hide the default cursor */
+body {
+  cursor: none;
+}
+
+/* Main cursor (inner dot) */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #ff005d89; /* Neon pink */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, background-color 0.3s ease;
+}
+
+/* Cursor outline (outer ring) */
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 0, 93, 0.498); /* Neon ring */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, border-color 0.3s ease;
+}
+
+/* Hover effect */
+.cursor.hover {
+  background-color: rgba(255, 255, 255, 0.9); /* Bright center */
+}
+
+.cursor-outline.hover {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 0, 93, 1); /* Stronger neon */
+  transform: scale(1.2) translate(-50%, -50%);
+}
+
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+<div class="cursor-outline"></div>
+
+<script>
+    // Get the cursor elements
+const cursor = document.querySelector('.cursor');
+const outline = document.querySelector('.cursor-outline');
+
+// Update cursor position on mouse move
+document.addEventListener('mousemove', (e) => {
+  const { clientX: x, clientY: y } = e;
+
+  cursor.style.top = `${y}px`;
+  cursor.style.left = `${x}px`;
+
+  outline.style.top = `${y}px`;
+  outline.style.left = `${x}px`;
+});
+
+// Add hover effects on interactive elements
+document.querySelectorAll('a, button, input').forEach((element) => {
+  element.addEventListener('mouseenter', () => {
+    cursor.classList.add('hover');
+    outline.classList.add('hover');
+  });
+
+  element.addEventListener('mouseleave', () => {
+    cursor.classList.remove('hover');
+    outline.classList.remove('hover');
+  });
+});
+
+</script>
+</body>
+</html>

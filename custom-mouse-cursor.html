@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Default cursor hidden */
+body {
+  cursor: none; /* Hides the default mouse cursor */
+}
+
+/* Custom cursor styles */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  border-radius: 50%;
+  pointer-events: none; /* Prevent cursor from interacting with elements */
+  z-index: 9999; /* Ensure it appears above all elements */
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, background-color 0.3s ease;
+}
+
+/* Cursor hover animation */
+.custom-cursor.hover {
+  transform: scale(2) translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+<script>
+    const cursor = document.querySelector('.custom-cursor');
+
+// Update cursor position
+document.addEventListener('mousemove', (e) => {
+  cursor.style.top = `${e.clientY}px`;
+  cursor.style.left = `${e.clientX}px`;
+});
+
+// Add hover effect for interactive elements
+document.querySelectorAll('a, button').forEach((element) => {
+  element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
+
+</script>
+</body>
+</html>
