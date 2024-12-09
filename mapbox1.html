@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MapBox Web Map</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" style=""></div>
+
+    <!-- Map Box Direction Plugin API -->
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1Ijoic2FjaGluaW1hZ2luZXR2ZW50dXJlcyIsImEiOiJjbTN5Zjk0dzYxZ3N0MmpxdG03c2h0MDRjIn0.9PuymL69iE2GV59bBnCOsw";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        style: "mapbox://styles/mapbox/light-v11", // style URL
+        center: [-118.4799404, 34.0184441], // starting position [lng, lat]
+        zoom: 15, // starting zoom
+      });
+
+      // Setting the Marker on the Map
+      const marker1 = new mapboxgl.Marker({
+        color: "red",
+      })
+        .setLngLat([-118.4799404, 34.0184441])
+        .addTo(map);
+
+      // Setting the Controls on the Marker
+      map.addControl(new mapboxgl.FullscreenControl(), "top-right");
+      map.addControl(new mapboxgl.NavigationControl());
+      //   map.scrollZoom.disable();
+
+      map.on("style.load", () => {
+        map.setFog({}); // Set the default atmosphere style
+      });
+
+
+      // Setting the Navigation From - To Point
+
+    //   map.addControl(
+    //     new MapboxDirections({
+    //       accessToken: mapboxgl.accessToken,
+    //     }),
+    //     "top-left"
+    //   );
+
+ // Add the Mapbox Directions control
+const directions = new MapboxDirections({
+  accessToken: mapboxgl.accessToken,
+  unit: 'metric', // Use metric units
+  profile: 'mapbox/driving', // Driving directions
+});
+
+// Add the directions control to the map
+map.addControl(directions, 'top-left');
+
+// Define origin and destination
+//const origin = [-118.4912, 34.0194]; // Example: Santa Monica Pier
+const destination = [-118.4799404, 34.0184441]; // Example: Your location
+
+// Set the origin and destination programmatically
+directions.on('load', () => {
+  directions.setOrigin(origin); // Set the origin coordinates
+  directions.setDestination(destination); // Set the destination coordinates
+});
+
+// Alternatively, set it directly after adding the control
+//directions.setOrigin(origin);
+directions.setDestination(destination);
+
+      // Create a custom marker element with text
+const markerDiv = document.createElement('div');
+markerDiv.style.backgroundColor = '#964143'; // Background color for marker
+markerDiv.style.color = '#FFFFFF'; // Text color
+markerDiv.style.margin = '25px 4px 10px'; // Margin for better spacing
+markerDiv.style.padding = '2px 10px'; // Padding for better spacing
+markerDiv.style.borderRadius = '5px'; // Rounded corners
+markerDiv.style.fontSize = '12px'; // Adjust text size
+markerDiv.style.boxShadow = '0px 2px 5px rgba(0,0,0,0.3)'; // Add shadow for better visibility
+markerDiv.innerText = 'AkarStudios'; // Add your text here
+
+// Add the custom marker to the map
+new mapboxgl.Marker(markerDiv)
+  .setLngLat([-118.4799404, 34.0184441]) // Marker coordinates [lng, lat]
+  .addTo(map);
+    </script>
+  </body>
+</html>
