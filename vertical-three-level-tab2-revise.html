@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Three-Level Vertical Tabs</title>
+    <style>
+      .megamenuClassCoe {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .vertical-menu {
+        flex: 1;
+        border-right: 1px solid #ddd;
+        padding: 10px;
+        box-sizing: border-box;
+        overflow-y: auto;
+      }
+
+      .menu-btn {
+        display: block;
+        width: 100%;
+        padding: 10px 20px;
+        margin: 5px 0;
+        border: none;
+        background-color: #f0f0f0;
+        color: #333;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 25px;
+        border-bottom: 2px solid rgb(169, 169, 169);
+      }
+
+      .menu-btn.active {
+        background-color: #1464ab;
+        color: #fff;
+      }
+
+      .menu-btn:hover {
+        background-color: #ddd;
+        color: #1464ab !important;
+      }
+
+      .content {
+        display: none;
+        /* padding: 15px; */
+        /* border: 1px solid #ddd; */
+        margin-top: 10px;
+        /* background-color: #f9f9f9; */
+      }
+
+      .content.active {
+        display: block;
+      }
+
+      .content h4 {
+        /* display: block; */
+        width: 90%;
+        padding: 8px 20px;
+        margin: 5px 0;
+        border: none;
+        background-color: #f0f0f0f8;
+        color: #333;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        /* font-size: 25px; */
+        border-bottom: 2px solid rgb(169, 169, 169);
+      }
+
+      .content h4:hover {
+        background-color: #ddd;
+        color: #1464ab !important;
+      }
+
+      .content h4 a {
+        text-decoration: none;
+        color: #464646;
+        font-weight: 400;
+        font-size: 17px;
+      }
+
+      .content h4 a:hover {
+        color: #1464ab !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="megamenuClassCoe">
+      <!-- First-Level Menu -->
+      <div id="firstLevelMenu" class="vertical-menu">
+        <button id="coeBtn" class="menu-btn active">
+          College of Engineering
+        </button>
+        <button id="rcBtn" class="menu-btn">Research Centre</button>
+        <button id="somBtn" class="menu-btn">School of Management</button>
+        <button id="saceBtn" class="menu-btn">School of Advance Careers</button>
+        <button id="ifBtn" class="menu-btn">Incubation Foundation</button>
+      </div>
+
+      <!-- Second-Level Sub-Menu -->
+      <div id="secondLevelMenu" class="vertical-menu">
+        <button id="ugBtn" class="menu-btn">Undergraduate</button>
+        <button id="pgBtn" class="menu-btn">Postgraduate</button>
+      </div>
+
+      <!-- Third-Level Content Area -->
+      <div id="thirdLevelContent" class="vertical-menu">
+        <!-- Undergraduate Department -->
+        <div id="ugContent" class="content">
+          <h4><a href="#">Overview</a></h4>
+          <h4>
+            <a href="#">Electrical and Electronics Engineering Department</a>
+          </h4>
+          <h4>
+            <a href="#">Electronics and Communication Engineering Department</a>
+          </h4>
+          <h4><a href="#">Computer Science and Engineering Department </a></h4>
+          <h4><a href="#">Information Technology Department</a></h4>
+          <h4><a href="#">Mechanical Engineering Department</a></h4>
+          <h4><a href="#">Chemical Engineering Department</a></h4>
+          <h4><a href="#">Biomedical Engineering Department</a></h4>
+          <h4><a href="#">Civil Engineering Department</a></h4>
+          <h4><a href="#">English Department</a></h4>
+          <h4><a href="#">Mathematics Department</a></h4>
+          <h4><a href="#">Physics Department</a></h4>
+          <h4><a href="#">Chemistry Department</a></h4>
+        </div>
+        <!-- Undergraduate Department End-->
+
+        <!-- Post Graduate Content  -->
+        <div id="pgContent" class="content">
+          <h4><a href="#">M.E Power Electronics & Drive</a></h4>
+          <h4><a href="#">M.E Communication Systems</a></h4>
+          <h4><a href="#">M.E Computer Sci & Engineering</a></h4>
+          <h4><a href="#">M.Tech Information Technology</a></h4>
+          <h4><a href="#">M.E Manufacturing Engineering</a></h4>
+          <h4><a href="#">M.E Energy Engineering</a></h4>
+          <h4><a href="#">M.Tech Environmental Sci & Technology</a></h4>
+          <h4><a href="#">M.E Medical Electronics</a></h4>
+        </div>
+
+        <!-- Post Graduate Content End  -->
+
+        <!-- Research Center Start -->
+        <div id="rcContent" class="content">
+          <h4><a href="#">About SSNRC</a></h4>
+          <h4><a href="#">People</a></h4>
+          <h4><a href="#">Research Program</a></h4>
+          <h4><a href="#">Research Statistics</a></h4>
+          <h4><a href="#">Contact Us</a></h4>
+        </div>
+        <!-- Research Center End -->
+
+        <!-- School Of Management Start -->
+        <div id="somContent" class="content">
+          <img src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2024/12/DSC_1101-1-1.jpg" alt="" width="600px">
+          <h4><a href="#">Visit School Of Management</a></h4>
+        </div>
+
+        <!-- School Of Management End  -->
+
+        <!-- School of Advance Careers Start -->
+        <div id="saceContent" class="content">
+          <h4><a href="#">Explore SACE</a></h4>
+          <h4><a href="#">Full Time Program</a></h4>
+          <h4><a href="#">Part Time Program</a></h4>
+          <h4><a href="#">Recruiters</a></h4>
+         
+        </div>
+        <!-- School of Advance Careers End -->
+
+         <!-- Incubation start -->
+        <div id="ifContent" class="content">
+          <img src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/November_11zon-scaled-1.jpg" alt="" width="50%">
+          <h4><a href="#">About Us</a></h4>
+          <h4><a href="#">Leadership</a></h4>
+          <h4><a href="#">Incubation</a></h4>
+          <h4><a href="#">Advantage</a></h4>
+          <h4><a href="#">Events</a></h4>
+          <h4><a href="#">Careers</a></h4>
+        </div>
+        <!-- Incubation End -->
+      </div>
+    </div>
+    <script>
+      const firstLevelBtns = document.querySelectorAll(
+        "#firstLevelMenu .menu-btn"
+      );
+      const secondLevelBtns = document.querySelectorAll(
+        "#secondLevelMenu .menu-btn"
+      );
+      const contentSections = document.querySelectorAll(
+        "#thirdLevelContent .content"
+      );
+
+      function clearActiveButtons(buttons) {
+        buttons.forEach((btn) => btn.classList.remove("active"));
+      }
+
+      // Ensure "College of Engineering" is active by default
+      document.getElementById("secondLevelMenu").style.display = "block";
+
+      // First-Level Menu Logic
+      document.getElementById("coeBtn").addEventListener("click", () => {
+        clearActiveButtons(firstLevelBtns);
+        document.getElementById("coeBtn").classList.add("active");
+        secondLevelBtns.forEach((btn) => btn.classList.remove("active"));
+        contentSections.forEach((content) =>
+          content.classList.remove("active")
+        );
+        document.getElementById("secondLevelMenu").style.display = "block";
+      });
+
+      // Other First-Level Buttons remain as they are
+
+      // active coe end
+
+      document.getElementById("rcBtn").addEventListener("click", () => {
+        clearActiveButtons(firstLevelBtns);
+        document.getElementById("rcBtn").classList.add("active");
+        document.getElementById("secondLevelMenu").style.display = "none";
+        contentSections.forEach((content) =>
+          content.classList.remove("active")
+        );
+        document.getElementById("rcContent").classList.add("active");
+      });
+
+      document.getElementById("somBtn").addEventListener("click", () => {
+        clearActiveButtons(firstLevelBtns);
+        document.getElementById("somBtn").classList.add("active");
+        document.getElementById("secondLevelMenu").style.display = "none";
+        contentSections.forEach((content) =>
+          content.classList.remove("active")
+        );
+        document.getElementById("somContent").classList.add("active");
+      });
+
+      document.getElementById("saceBtn").addEventListener("click", () => {
+        clearActiveButtons(firstLevelBtns);
+        document.getElementById("saceBtn").classList.add("active");
+        document.getElementById("secondLevelMenu").style.display = "none";
+        contentSections.forEach((content) =>
+          content.classList.remove("active")
+        );
+        document.getElementById("saceContent").classList.add("active");
+      });
+
+      document.getElementById("ifBtn").addEventListener("click", () => {
+        clearActiveButtons(firstLevelBtns);
+        document.getElementById("ifBtn").classList.add("active");
+        document.getElementById("secondLevelMenu").style.display = "none";
+        contentSections.forEach((content) =>
+          content.classList.remove("active")
+        );
+        document.getElementById("ifContent").classList.add("active");
+      });
+
+      // Second-Level Menu Logic
+      document.getElementById("ugBtn").addEventListener("click", () => {
+        clearActiveButtons(secondLevelBtns);
+        document.getElementById("ugBtn").classList.add("active");
+        contentSections.forEach((content) =>
+          content.classList.remove("active")
+        );
+        document.getElementById("ugContent").classList.add("active");
+      });
+
+      document.getElementById("pgBtn").addEventListener("click", () => {
+        clearActiveButtons(secondLevelBtns);
+        document.getElementById("pgBtn").classList.add("active");
+        contentSections.forEach((content) =>
+          content.classList.remove("active")
+        );
+        document.getElementById("pgContent").classList.add("active");
+      });
+    </script>
+  </body>
+</html>
