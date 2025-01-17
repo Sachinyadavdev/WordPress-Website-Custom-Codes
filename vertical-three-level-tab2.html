@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three-Level Vertical Tabs</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .vertical-menu {
+      flex: 1;
+      border-right: 1px solid #ddd;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    .menu-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 20px;
+      margin: 5px 0;
+      border: none;
+      background-color: #f0f0f0;
+      color: #333;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-btn.active {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .menu-btn:hover {
+      background-color: #ddd;
+    }
+
+    .content {
+      display: none;
+      padding: 15px;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- First-Level Menu -->
+  <div id="firstLevelMenu" class="vertical-menu">
+    <button id="coeBtn" class="menu-btn">College of Engineering</button>
+    <button id="rcBtn" class="menu-btn">Research Centre</button>
+    <button id="somBtn" class="menu-btn">School of Management</button>
+    <button id="saceBtn" class="menu-btn">School of Advance Careers</button>
+    <button id="ifBtn" class="menu-btn">Incubation Foundation</button>
+  </div>
+
+  <!-- Second-Level Sub-Menu -->
+  <div id="secondLevelMenu" class="vertical-menu">
+    <button id="ugBtn" class="menu-btn">Undergraduate</button>
+    <button id="pgBtn" class="menu-btn">Postgraduate</button>
+  </div>
+
+  <!-- Third-Level Content Area -->
+  <div id="thirdLevelContent" class="vertical-menu">
+    <div id="ugContent" class="content">Undergraduate Content</div>
+    <div id="pgContent" class="content">Postgraduate Content</div>
+    <div id="rcContent" class="content">Research Centre Content</div>
+    <div id="somContent" class="content">School of Management Content</div>
+    <div id="saceContent" class="content">School of Advance Careers Content</div>
+  </div>
+
+  <script>
+    const firstLevelBtns = document.querySelectorAll('#firstLevelMenu .menu-btn');
+    const secondLevelBtns = document.querySelectorAll('#secondLevelMenu .menu-btn');
+    const contentSections = document.querySelectorAll('#thirdLevelContent .content');
+
+    // First-Level Menu Logic
+    document.getElementById('coeBtn').addEventListener('click', () => {
+      secondLevelBtns.forEach(btn => btn.classList.remove('active'));
+      contentSections.forEach(content => content.classList.remove('active'));
+      document.getElementById('secondLevelMenu').style.display = 'block';
+    });
+
+    document.getElementById('rcBtn').addEventListener('click', () => {
+      document.getElementById('secondLevelMenu').style.display = 'none';
+      contentSections.forEach(content => content.classList.remove('active'));
+      document.getElementById('rcContent').classList.add('active');
+    });
+
+    document.getElementById('somBtn').addEventListener('click', () => {
+      document.getElementById('secondLevelMenu').style.display = 'none';
+      contentSections.forEach(content => content.classList.remove('active'));
+      document.getElementById('somContent').classList.add('active');
+    });
+
+    document.getElementById('saceBtn').addEventListener('click', () => {
+      document.getElementById('secondLevelMenu').style.display = 'none';
+      contentSections.forEach(content => content.classList.remove('active'));
+      document.getElementById('saceContent').classList.add('active');
+    });
+
+    document.getElementById('ifBtn').addEventListener('click', () => {
+      document.getElementById('secondLevelMenu').style.display = 'none';
+      contentSections.forEach(content => content.classList.remove('active'));
+      document.getElementById('pgContent').classList.add('active');
+    });
+
+    // Second-Level Menu Logic
+    document.getElementById('ugBtn').addEventListener('click', () => {
+      contentSections.forEach(content => content.classList.remove('active'));
+      document.getElementById('ugContent').classList.add('active');
+    });
+
+    document.getElementById('pgBtn').addEventListener('click', () => {
+      contentSections.forEach(content => content.classList.remove('active'));
+      document.getElementById('pgContent').classList.add('active');
+    });
+  </script>
+
+</body>
+</html>
