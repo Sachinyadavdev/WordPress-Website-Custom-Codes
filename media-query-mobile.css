@@ -1,0 +1,12 @@
+@media only screen and (max-width: 767px) {
+    /* Styles for phones */
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    /* Add other styles specific to phones here */
+}
