@@ -1,0 +1,25 @@
+@media only screen and (min-width: 1024px) {
+  /* Your desktop-specific styles go here */
+}
+
+
+@media only screen and (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .banner {
+    padding: 50px;
+    background-color: #0D5494;
+    color: #FFFFFF;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1920px) {
+  /* Styles for standard desktop screens */
+}
