@@ -1,0 +1,57 @@
+/* TablePress General Styling */
+.tablepress {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+/* Table Headers */
+.tablepress thead th {
+    background-color: #0073aa; /* WordPress Blue */
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #dddddd;
+}
+
+/* Table Rows */
+.tablepress tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.tablepress tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+}
+
+/* Table Cells */
+.tablepress tbody td {
+    padding: 10px;
+    border: 1px solid #dddddd;
+    text-align: left;
+}
+
+/* Hover Effect */
+.tablepress tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Pagination Styling (If Enabled) */
+.tablepress tfoot th {
+    background-color: #0073aa;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .tablepress {
+        font-size: 14px;
+    }
+    .tablepress tbody td {
+        padding: 8px;
+    }
+}
