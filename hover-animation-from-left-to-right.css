@@ -1,0 +1,27 @@
+.hover-animation {
+    position: relative;
+    overflow: hidden;
+    display: inline-block; /* Ensures proper width behavior */
+    padding: 10px 20px; /* Add some padding for better visibility */
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.hover-animation::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--wdtTertiaryColor, #f6f6f6); /* Default color fallback */
+    height: 100%;
+    width: 0;
+    z-index: -1;
+    transition: width 0.3s ease-in-out;
+}
+
+.hover-animation:hover::after {
+    width: 100%;
+}
