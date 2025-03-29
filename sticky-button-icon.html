@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Social Media Bar</title>
+    <style>
+        /* Floating Button Container */
+        .floating-bar {
+            position: fixed;
+            right: 0;
+            top: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+        }
+
+        /* Each Button */
+        .floating-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px 0 0 10px;
+            transition: width 0.3s ease-in-out;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* Icon Styling */
+        .floating-bar a img {
+            width: 24px;
+            height: 24px;
+            transition: margin-right 0.3s;
+        }
+
+        /* Hover Effect - Expands to Show Text */
+        .floating-bar a:hover {
+            width: 160px;
+            justify-content: start;
+            padding-left: 10px;
+        }
+
+        .floating-bar a span {
+            display: none;
+            margin-left: 10px;
+        }
+
+        .floating-bar a:hover span {
+            display: inline-block;
+        }
+
+        /* Social Media Colors */
+        .instagram { background: #E1306C; }
+        .facebook { background: #3b5998; }
+        .youtube { background: #FF0000; }
+        .twitter { background: #1DA1F2; }
+        .download { background: #4CAF50; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .floating-bar {
+                top: 30%;
+            }
+            .floating-bar a {
+                width: 45px;
+                height: 45px;
+                font-size: 14px;
+            }
+            .floating-bar a:hover {
+                width: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Social Media Bar -->
+    <div class="floating-bar">
+        <a href="https://instagram.com" target="_blank" class="instagram">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+            <span>Instagram</span>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="facebook">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png">
+            <span>Facebook</span>
+        </a>
+        <a href="https://youtube.com" target="_blank" class="youtube">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+            <span>YouTube</span>
+        </a>
+        <a href="https://twitter.com" target="_blank" class="twitter">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png">
+            <span>Twitter (X)</span>
+        </a>
+        <a href="brochure.pdf" download class="download">
+            <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png">
+            <span>Download</span>
+        </a>
+    </div>
+
+</body>
+</html>
