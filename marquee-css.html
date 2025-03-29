@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Notices Marquee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .notice-container {
+            background: #ffcc00;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .notice-wrapper {
+            display: flex;
+            animation: scrollLeft 15s linear infinite;
+        }
+        .notice-wrapper:hover {
+            animation-play-state: paused;
+        }
+        .notice {
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .notice a {
+            text-decoration: none;
+            color: #000;
+        }
+        .notice a:hover {
+            text-decoration: underline;
+        }
+        
+        @keyframes scrollLeft {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .notice {
+                font-size: 14px;
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="notice-container">
+        <div class="notice-wrapper">
+            <div class="notice"><a href="#">📢 School Reopens! Welcome Back!</a></div>
+            <div class="notice"><a href="#">📢 Admissions Open for 2025-26 - Apply Now!</a></div>
+            <div class="notice"><a href="#">📢 Annual Function 2025 – Save the Date!</a></div>
+        </div>
+    </div>
+
+</body>
+</html>
