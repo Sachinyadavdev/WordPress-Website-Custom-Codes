@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vertical News Scroll</title>
+  <style>
+    .news-scroll-container {
+      width: 100%;
+      max-width: 400px;
+      height: 250px;
+      margin: 20px auto;
+      overflow: hidden;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      position: relative;
+    }
+
+    .news-scroll {
+      display: flex;
+      flex-direction: column;
+      animation: scroll-up 10s linear infinite;
+    }
+
+    .news-item {
+      padding: 10px 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .news-item a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    .news-item a:hover {
+      color: #007BFF;
+    }
+
+    /* Pause on hover */
+    .news-scroll-container:hover .news-scroll {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-up {
+      0% {
+        transform: translateY(0%);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+
+    /* Responsive font size */
+    @media (max-width: 600px) {
+      .news-item a {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="news-scroll-container">
+    <div class="news-scroll">
+      <div class="news-item"><a href="#">📢 Admission Open for 2025–26 – Enroll Now!</a></div>
+      <div class="news-item"><a href="#">🎉 Annual Function on 15th April – Join Us for the Celebration!</a></div>
+      <div class="news-item"><a href="#">🏫 School Reopens After Break – Welcome Back!</a></div>
+      <div class="news-item"><a href="#">🧪 Science Exhibition Coming Soon – Stay Tuned!</a></div>
+      <div class="news-item"><a href="#">📸 Sports Day Highlights Uploaded – View Now!</a></div>
+      <div class="news-item"><a href="#">📸 Sports Day Highlights Uploaded – View Now!</a></div>
+      <div class="news-item"><a href="#">📸 Sports Day Highlights Uploaded – View Now!</a></div>
+    </div>
+  </div>
+
+</body>
+</html>
