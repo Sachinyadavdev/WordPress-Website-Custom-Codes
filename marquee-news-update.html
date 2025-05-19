@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ssn-marquee-wrapper {
+          overflow: hidden;
+          position: relative;
+          background: #003366;
+          padding: 12px 0;
+          margin-top: 0px;
+          padding-right: 0px;
+        }
+        
+        .ssn-marquee-content {
+          display: inline-flex;
+          min-width: 100%;
+          animation: scroll-left 15s linear infinite;
+        }
+        
+        .ssn-marquee-content:hover {
+          animation-play-state: paused;
+        }
+        
+        .ssn-marquee-item {
+          flex: none;
+          padding-right: 50px;
+          font-size: 18px;
+          white-space: nowrap;
+          color: #ffffff;
+          font-weight: 500;
+        }
+        
+        /* Blinking effect */
+        .blinking {
+          animation: blink 1s ease-in-out infinite;
+          color: #FFD700; /* Golden highlight */
+          font-weight: 700;
+        }
+        
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.2; }
+        }
+        
+        @keyframes scroll-left {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .ssn-marquee-item {
+            font-size: 15px;
+            padding-right: 25px;
+          }
+        }
+        .ssn-marquee-item a{
+            text-decoration: none;
+            color:white;
+        }
+        </style>
+</head>
+<body>
+
+        
+        <div class="ssn-marquee-wrapper">
+          <div class="ssn-marquee-content">
+            <div class="ssn-marquee-item"><a href="#">📢 Admissions open for International Students – <span class="blinking">Apply Now!</span></a></div>
+            <div class="ssn-marquee-item"><a href="#">🎓 SSN ranked among Top Engineering Colleges in India – NIRF 2024</a></div>
+            <div class="ssn-marquee-item"><a href="#">🔬 New Research Center for AI & Robotics inaugurated on campus</a></div>
+            <div class="ssn-marquee-item"><a href="#">📅 SSN TechFest 2025 scheduled for August 12–14 – <span class="blinking">Register Now!</span></a></div>
+            <div class="ssn-marquee-item"><a href="#">🏆 SSN students win 1st place in Smart India Hackathon 2025</a></div>
+          </div>
+        </div>
+        
+</body>
+</html>
