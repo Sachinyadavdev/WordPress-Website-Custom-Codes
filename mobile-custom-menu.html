@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MObile Custom Menu</title>
+    <style>
+      body {
+        margin: 0;
+        background: #c4c4c4;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Accordion Wrapper */
+      /* .accordion-wrapper-23 { */
+        /* position: fixed; */
+        /* width: 100%; */
+        /* height: 100vh; */
+        /* overflow: hidden; */
+        /* overflow: auto; */
+      /* } */
+      /* Menu Button */
+      .menu-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 11000;
+        /* background-color: black; */
+        background-color: #eff6ff;
+      }
+
+      .menu-toggle img {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        display: none;
+      }
+
+      #openMenuBtn {
+        display: block;
+        background: #c4c4c400;
+      }
+
+      #closeMenuBtn.active {
+        display: block;
+      }
+
+      #openMenuBtn.hide {
+        display: none;
+      }
+
+      /* Fullscreen Menu */
+      /* .mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 1000;
+}
+
+.mobile-menu.active {
+  opacity: 1;
+  pointer-events: all;
+} */
+
+      /* Fullscreen slide-in menu */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Hidden initially */
+        width: 100%;
+        height: 100vh;
+        /* background-color: #111; */
+        background-color: #eff6ff;
+        transition: right 0.4s ease;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: baseline;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        /* padding-top: 50px; */
+      }
+
+      .mobile-menu.active {
+        right: 0; /* Slide in */
+      }
+
+      .mobile-menu ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      /* .mobile-menu ul {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+} */
+
+      .mobile-menu li {
+        margin: 5px 0;
+      }
+
+      .mobile-menu a {
+        /* color: white; */
+        color: #002a4a;
+        font-size: 20px;
+        text-decoration: none;
+      }
+      .hamberger-content-container {
+        padding-left: 15px;
+        padding-right: 20px;
+      }
+      .hamberger-body {
+        padding-left: 10px;
+      }
+
+      /* Accordion CSS Start  */
+
+      .accordion-item {
+        width: 100%;
+      }
+
+      /* Accordion Menu  */
+      .accordion-item button {
+        font-size: 23px;
+        text-align: left !important;  /* For changing the text alignment of the main menu */
+      }
+      .single-menu a {
+        font-size: 23px;
+      }
+
+      li.single-menu {
+        margin-top: 8px;
+        margin-bottom: 7px;
+      }
+
+      .accordion-toggle {
+        width: 100%;
+        background: none;
+        border: none;
+        /* color: #fff; */
+        color: #002a4a;
+        font-size: 20px;
+        text-align: left;
+        padding: 10px 0;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .accordion-toggle::after {
+        content: "+";
+        float: right;
+        font-size: 26px;
+        transition: transform 0.3s;
+      }
+
+      .accordion-toggle.active::after {
+        transform: rotate(180deg);
+      }
+
+      .submenu {
+        list-style: none;
+        padding-left: 15px;
+        margin: 0;
+        margin-left: 15px;
+        max-height: 0;
+        overflow: hidden;
+        /* transition: max-height 0.3s ease; */
+      }
+
+      .submenu li {
+        margin: 10px 0;
+      }
+
+      .accordion-toggle.active + .submenu {
+        max-height: 500px; /* Adjust based on content */
+      }
+
+      /* Accordion CSS End  */
+
+      /* New Accordion CSS Start  */
+
+      .submenu {
+        overflow: hidden;
+        height: 0;
+        transition: height 0.8s ease;
+      }
+
+      /* New Accordion CSS End  */
+
+      /* Other Custom CSS Start  */
+
+      .main-menu-heading {
+        color: #002a4a;
+        text-align: center;
+        font-size: 25px;
+      }
+
+      .ssn-logo-custom {
+        padding-top: 60px;
+      }
+      .apply-now-button-mobile button {
+        background: #f9c700;
+        color: black;
+        font-size: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .apply-now-button-mobile {
+        margin-bottom: 40px;
+      }
+
+      /* Other Custom CSS End  */
+    </style>
+  </head>
+  <body>
+    <!-- Accordion Wrapper-23 start  -->
+    <div class="accordion-wrapper-23">
+      <!-- hamberger button start  -->
+      <div class="menu-toggle" id="menuToggle">
+        <img
+          src="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2024/12/hamberger-icon.svg"
+          alt="Menu"
+          id="openMenuBtn"
+        />
+        <img
+          src="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2025/05/close-button-img.png"
+          width="80px"
+          alt="Close"
+          id="closeMenuBtn"
+        />
+      </div>
+      <!-- hamberger button closed  -->
+
+      <!-- hamberger main content start  -->
+      <div class="mobile-menu" id="mobileMenu">
+        <!-- hamberger content container start -->
+
+        <div class="hamberger-content-container">
+          <!-- hamberger head start -->
+          <div class="hamberger-head">
+            <div class="ssn-logo-custom">
+              <img
+                src="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2024/12/snn-logo.svg#123"
+                width="110px"
+                alt=""
+              />
+            </div>
+            <hr width="100%" style="margin-top: 10px" />
+          </div>
+
+          <!-- hamberger head closed -->
+
+          <!-- hamberger body start  -->
+          <div class="hamberger-body">
+            <h4 class="main-menu-heading">Main Menu</h4>
+            <ul class="accordion-menu">
+              <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">About</button>
+                <ul class="submenu">
+                  <li><a href="#">Overview</a></li>
+                  <li><a href="#">Vision and Mission</a></li>
+                  <li><a href="#">Founder</a></li>
+                  <li><a href="#">Management</a></li>
+                  <li><a href="#">President’s Welcome</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+
+              <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">MBA Programs</button>
+                <ul class="submenu">
+                  <li><a href="#">Introduction</a></li>
+                  <li><a href="#">Accreditation</a></li>
+                  <li><a href="#">MBA Curriculum Excellence</a></li>
+                  <li><a href="#">Program Educational Objectives</a></li>
+                  <li><a href="#">Program Outcomes</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+
+              <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">Doctoral Program</button>
+                <ul class="submenu">
+                  <li><a href="#">Ph. D Program</a></li>
+                  <li><a href="#">SSN Research Promotion Policy</a></li>
+                  <li><a href="#">Ph. D Admissions</a></li>
+                  <li><a href="#">Ph. D Online Application</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+
+              <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">Admissions</button>
+                <ul class="submenu">
+                  <li><a href="#">MBA@26</a></li>
+                  <li><a href="#">Unique Selling Proposition</a></li>
+                  <li><a href="#">Categories of Seats</a></li>
+                  <li><a href="#">Program Value</a></li>
+                  <li><a href="#">Eligibility</a></li>
+                  <li><a href="#">Download Brochure</a></li>
+                  <li><a href="#">Admissions Process</a></li>
+                  <li><a href="#">Apply Now</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+
+              <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">Faculty</button>
+                <ul class="submenu">
+                  <li><a href="#">Faculty Profiles</a></li>
+                  <li><a href="#">Competency Areas</a></li>
+                  <li><a href="#">Research Publications</a></li>
+                  <li><a href="#">Consultancy</a></li>
+                  <li><a href="#">Faculty Case Studies</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+
+              <li class="single-menu"><a href="#">ICETBM 2025</a></li>
+
+              <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">Student Achievements</button>
+                <ul class="submenu">
+                  <li><a href="#">Student Milestones</a></li>
+                  <li><a href="#">Championships and Prizes</a></li>
+                  <li><a href="#">External Events 2023-25</a></li>
+                  <li><a href="#">External Events 2022-24</a></li>
+                  <li><a href="#">External Events 2021-23</a></li>
+                  <li><a href="#">External Events 2020-22</a></li>
+                  <li><a href="#">External Events 2019-21</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+
+              <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">Placements</button>
+                <ul class="submenu">
+                  <li><a href="#">Internships </a></li>
+                  <li>
+                    <a href="#">Summer Internship Brochure (2024 – 26)</a>
+                  </li>
+                  <li><a href="#">Summer Internship Report (2023-25)</a></li>
+                  <li><a href="#">Placement Brochure (2023-25)</a></li>
+                  <li><a href="#">Placement report (2022-2024)</a></li>
+                  <li><a href="#">Want to Recruit?</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+            </ul>
+
+            <!-- Apply Now Button start -->
+
+            <div class="apply-now-button-mobile">
+              <button>Apply Now</button>
+              <button>Contact</button>
+            </div>
+
+            <!-- Apply Now Button End -->
+
+            <!-- Hamberger Other Menus Start  -->
+
+            <hr width="100%" style="margin-top: 10px" />
+
+            <h4 class="main-menu-heading">Other Menu</h4>
+
+            <!-- Other Menu Body Start  -->
+
+            <ul class="accordion-menu">
+              <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">Useful Links</button>
+                <ul class="submenu">
+                  <li><a href="#">Extra Mural Lectures</a></li>
+                  <li><a href="#">RTI</a></li>
+                  <li><a href="#">POSH Committee</a></li>
+                  <li><a href="#">Placement Record</a></li>
+                  <li><a href="#">ARIIA</a></li>
+                  <li><a href="#">NISP</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+
+               <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">Other Links</button>
+                <ul class="submenu">
+                  <li><a href="#">Bus Routes</a></li>
+                  <li><a href="#">Campus Tour</a></li>
+                  <li><a href="#">Code of Conduct</a></li>
+                  <li><a href="#">Contact</a></li>
+                  <li><a href="#">About</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+
+               <!-- Accoedion Menu Start  -->
+              <li class="accordion-item">
+                <button class="accordion-toggle">Disclosure</button>
+                <ul class="submenu">
+                  <li><a href="#">SSNCE NIRF</a></li>
+                  <li><a href="#">Grievance Redressal</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Environmental Policy</a></li>
+                  <li><a href="#">Policy on Prevention of Sexual Harassment</a></li>
+                  <li><a href="#">Service Rules – Teaching Staff</a></li>
+                  <li><a href="#">Service Rules – Non Teaching Staff</a></li>
+                  <li><a href="#">Disclaimer</a></li>
+                  <li><a href="#">Anti Ragging Committee</a></li>
+                  <li><a href="#">Research Policy</a></li>
+                </ul>
+              </li>
+
+              <!-- Accordion Menu End  -->
+
+           
+            </ul>
+
+            <!-- Other Menu Body End  -->
+
+            <!-- Bottom Button Start  -->
+
+            <div class="apply-now-button-mobile"></div>
+
+            <!-- Hamberger Other Menus End  -->
+          </div>
+          <!-- hamberger body closed -->
+        </div>
+        <!-- hamberger content container closed -->
+      </div>
+      <!-- hamberger main content closed -->
+    </div>
+    <!-- Accordion-warpper-23 Ends -->
+
+    <script>
+      const menu = document.getElementById("mobileMenu");
+      const openBtn = document.getElementById("openMenuBtn");
+      const closeBtn = document.getElementById("closeMenuBtn");
+
+      openBtn.addEventListener("click", () => {
+        menu.classList.add("active");
+        openBtn.classList.add("hide");
+        closeBtn.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        menu.classList.remove("active");
+        closeBtn.classList.remove("active");
+
+        // Wait for the transition to finish (match with your CSS duration)
+        setTimeout(() => {
+          openBtn.classList.remove("hide");
+        }, 400); // 400ms = same as `transition: right 0.4s ease` in CSS
+      });
+    </script>
+
+    <!-- Accordion JS Start  -->
+
+    <!-- <script>
+      const accordions = document.querySelectorAll(".accordion-toggle");
+
+      accordions.forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          toggle.classList.toggle("active");
+          const submenu = toggle.nextElementSibling;
+          submenu.style.maxHeight = submenu.style.maxHeight
+            ? null
+            : submenu.scrollHeight + "px";
+        });
+      });
+    </script> -->
+
+    <!-- Accordion JS End  -->
+
+    <!-- New Accordion JS Start  -->
+    <script>
+      const accordionToggles = document.querySelectorAll(".accordion-toggle");
+
+      accordionToggles.forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          const submenu = toggle.nextElementSibling;
+          const isOpen = toggle.classList.contains("active");
+
+          // Close all open accordions
+          accordionToggles.forEach((other) => {
+            if (other !== toggle) {
+              other.classList.remove("active");
+              const otherSubmenu = other.nextElementSibling;
+              otherSubmenu.style.height = "0px";
+              otherSubmenu.classList.remove("open");
+            }
+          });
+
+          // Toggle current accordion
+          if (isOpen) {
+            toggle.classList.remove("active");
+            submenu.style.height = submenu.scrollHeight + "px"; // force reflow
+            requestAnimationFrame(() => {
+              submenu.style.height = "0px";
+            });
+            submenu.classList.remove("open");
+          } else {
+            toggle.classList.add("active");
+            submenu.style.height = submenu.scrollHeight + "px";
+
+            // After transition ends, set height to auto so scroll works
+            submenu.addEventListener(
+              "transitionend",
+              () => {
+                if (toggle.classList.contains("active")) {
+                  submenu.style.height = "auto";
+                }
+              },
+              { once: true }
+            );
+
+            submenu.classList.add("open");
+          }
+        });
+      });
+
+      //  <!-- New Accordion JS End  -->
+
+      // Scrolling is fixed Start
+
+      if (!toggle.classList.contains("active")) {
+        toggle.classList.add("active");
+
+        submenu.style.height = submenu.scrollHeight + "px";
+
+        submenu.addEventListener("transitionend", function handler() {
+          if (toggle.classList.contains("active")) {
+            submenu.style.height = "auto"; // Let it grow naturally now
+          }
+          submenu.removeEventListener("transitionend", handler);
+        });
+      }
+
+      submenu.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+      // Scolling fixed End
+    </script>
+  </body>
+</html>
