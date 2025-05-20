@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grok AI - V3 Code Final </title>
+    <style>
+      body {
+        margin: 0;
+        background: #c4c4c4;
+        color: white;
+        font-family: Arial, sans-serif;
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      /* Menu Button */
+      .menu-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 11000;
+        background-color: #eff6ff;
+      }
+
+      .menu-toggle img {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        display: none;
+      }
+
+      #openMenuBtn {
+        display: block;
+        background: #ffffff;
+      }
+
+      #closeMenuBtn.active {
+        display: block;
+      }
+
+      #openMenuBtn.hide {
+        display: none;
+      }
+
+      /* Fullscreen slide-in menu */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: #eff6ff;
+        transition: right 0.4s ease;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: baseline;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .mobile-menu.active {
+        right: 0;
+      }
+
+      .mobile-menu ul {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+        margin: 0;
+      }
+
+      .mobile-menu li {
+        margin: 5px 0;
+      }
+
+      .mobile-menu a {
+        color: #002a4a;
+        font-size: 20px;
+        text-decoration: none;
+        display: block;
+        padding: 10px 0;
+      }
+
+      .hamberger-content-container {
+        padding-left: 15px;
+        padding-right: 20px;
+        width: 100%;
+      }
+
+      .hamberger-body {
+        padding-left: 10px;
+      }
+
+      /* Accordion CSS */
+      .accordion-item {
+        width: 100%;
+        position: relative;
+      }
+
+      .accordion-toggle1 {
+        width: 100%;
+        background: none;
+        border: none;
+        color: #002a4a;
+        font-size: 20px;
+        text-align: left;
+        padding: 10px 0;
+        cursor: pointer;
+        outline: none;
+        position: relative;
+        display: block;
+      }
+
+      .accordion-toggle1::after {
+        content: "+";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 26px;
+        transition: transform 0.3s ease;
+      }
+
+      .accordion-toggle1.active::after {
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .submenu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease;
+      }
+
+      .submenu li {
+        margin: 0;
+        padding-left: 15px;
+      }
+
+      .submenu .accordion-item {
+        padding-left: 15px;
+      }
+
+      .submenu .accordion-toggle1 {
+        font-size: 18px;
+        padding: 8px 0;
+      }
+
+      .submenu .submenu {
+        padding-left: 15px;
+      }
+
+      /* Other Custom CSS */
+      .main-menu-heading {
+        color: #002a4a;
+        text-align: center;
+        font-size: 25px;
+        margin: 10px 0;
+      }
+
+      .ssn-logo-custom {
+        padding-top: 60px;
+      }
+
+      .apply-now-button-mobile button {
+        background: #f9c700;
+        color: black;
+        font-size: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      .apply-now-button-mobile {
+        margin-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordion-wrapper-23">
+      <div class="menu-toggle" id="menuToggle">
+        <img
+          src="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2024/12/hamberger-icon.svg"
+          alt="Menu"
+          id="openMenuBtn"
+        />
+        <img
+          src="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2025/05/close-button-img.png"
+          width="80px"
+          alt="Close"
+          id="closeMenuBtn"
+        />
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="hamberger-content-container">
+          <div class="hamberger-head">
+            <div class="ssn-logo-custom">
+              <img
+                src="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2024/12/snn-logo.svg#123"
+                width="110px"
+                alt=""
+              />
+            </div>
+            <hr width="100%" style="margin-top: 10px" />
+          </div>
+
+          <div class="hamberger-body">
+            <h4 class="main-menu-heading">Main Menu</h4>
+            <ul class="accordion-menu">
+              <li class="accordion-item">
+                <button class="accordion-toggle1">About</button>
+                <ul class="submenu">
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/overview/">Overview</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/about-vision-mission/">Vision and Mission</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/the-founder/">Founder</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/about-management/">Management</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/presidents-welcome-message/">President’s Welcome</a></li>
+                  <li class="accordion-item">
+                    <button class="accordion-toggle1">History</button>
+                    <ul class="submenu">
+                      <li><a href="#">Milestones</a></li>
+                      <li><a href="#">Legacy</a></li>
+                    </ul>
+                  </li>
+                  <li class="accordion-item">
+                    <button class="accordion-toggle1">History</button>
+                    <ul class="submenu">
+                      <li><a href="#">Milestones</a></li>
+                      <li><a href="#">Legacy</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="accordion-item">
+                <button class="accordion-toggle1">MBA Programs</button>
+                <ul class="submenu">
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/introduction/">Introduction</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/accreditation/">Accreditation</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/mba-curriculum-excellence/">MBA Curriculum Excellence</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/program-educational-objectives/">Program Educational Objectives</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/program-outcomes/">Program Outcomes</a></li>
+                </ul>
+              </li>
+
+              <li class="accordion-item">
+                <button class="accordion-toggle1">Doctoral Program</button>
+                <ul class="submenu">
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/doctoral-program/">Ph. D Program</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2025/03/MBA-Research-Scholars-policy.pdf">SSN Research Promotion Policy</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2025/03/AU-Ph.D-Admission-Notification-18-02-2024.pdf">Ph. D Admissions</a></li>
+                  <li><a href="https://cfr.annauniv.edu/jul24/index.php">Ph. D Online Application</a></li>
+                </ul>
+              </li>
+
+              <li class="accordion-item">
+                <button class="accordion-toggle1">Admissions</button>
+                <ul class="submenu">
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/mba-26/">MBA@26</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/unique-selling-proposition/">Unique Selling Proposition</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/categories-of-seats/">Categories of Seats</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/program-value/">Program Value</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/eligibility/">Eligibility</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/download-brochure/">Download Brochure</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/admissions-process/">Admissions Process</a></li>
+                  <li><a href="https://admissions.ssn.edu.in/">Apply Now</a></li>
+                </ul>
+              </li>
+
+              <li class="accordion-item">
+                <button class="accordion-toggle1">Faculty</button>
+                <ul class="submenu">
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/faculty-profiles/">Faculty Profiles</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/competency-areas/">Competency Areas</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/#">Research Publications</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/consultancy/">Consultancy</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/faculty-case-studies/">Faculty Case Studies</a></li>
+                </ul>
+              </li>
+
+              <li class="single-menu"><a href="https://imaginetventures.org/projects/ssn-management/icetbm-2025-new/">ICETBM 2025</a></li>
+
+              <li class="accordion-item">
+                <button class="accordion-toggle1">Student Achievements</button>
+                <ul class="submenu">
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/student-milestones/">Student Milestones</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/championships-prizes/">Championships and Prizes</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/external-events-2023-25/">External Events 2023-25</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/external-events-2022-24/">External Events 2022-24</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/external-events-2021-23/">External Events 2021-23</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/external-events-2020-22/">External Events 2020-22</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/external-events-2019-21/">External Events 2019-21</a></li>
+                </ul>
+              </li>
+
+              <li class="accordion-item">
+                <button class="accordion-toggle1">Placements</button>
+                <ul class="submenu">
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/internships/">Internships</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2025/04/SSN-Internship-Brochure-25.pdf">Summer Internship Brochure (2024 – 26)</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2025/04/SI-Report-2024-Batch.pdf">Summer Internship Report (2023-25)</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2025/04/SSN-SoM-Placement-Brochure-25_compressed.pdf">Placement Brochure (2023-25)</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/wp-content/uploads/2025/04/Placement-Report.pdf">Placement report (2022-2024)</a></li>
+                  <li><a href="https://imaginetventures.org/projects/ssn-management/want-to-recruit/">Want to Recruit?</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <div class="apply-now-button-mobile">
+              <a href="https://admissions.ssn.edu.in/"><button>Apply Now</button></a>
+              <a href="https://imaginetventures.org/projects/ssn-management/contact-us/"><button>Contact</button></a>
+            </div>
+
+            <hr width="100%" style="margin-top: 10px" />
+
+            <h4 class="main-menu-heading">Other Menu</h4>
+
+            <ul class="accordion-menu">
+              <li class="accordion-item">
+                <button class="accordion-toggle1">Useful Links</button>
+                <ul class="submenu">
+                  <li><a href="#">Extra Mural Lectures</a></li>
+                  <li><a href="#">RTI</a></li>
+                  <li><a href="#">POSH Committee</a></li>
+                  <li><a href="#">Placement Record</a></li>
+                  <li><a href="#">ARIIA</a></li>
+                  <li><a href="#">NISP</a></li>
+                </ul>
+              </li>
+
+              <li class="accordion-item">
+                <button class="accordion-toggle1">Other Links</button>
+                <ul class="submenu">
+                  <li><a href="#">Bus Routes</a></li>
+                  <li><a href="#">Campus Tour</a></li>
+                  <li><a href="#">Code of Conduct</a></li>
+                  <li><a href="#">Contact</a></li>
+                  <li><a href="#">About</a></li>
+                </ul>
+              </li>
+
+              <li class="accordion-item">
+                <button class="accordion-toggle1">Disclosure</button>
+                <ul class="submenu">
+                  <li><a href="#">SSNCE NIRF</a></li>
+                  <li><a href="#">Grievance Redressal</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Environmental Policy</a></li>
+                  <li><a href="#">Policy on Prevention of Sexual Harassment</a></li>
+                  <li><a href="#">Service Rules – Teaching Staff</a></li>
+                  <li><a href="#">Service Rules – Non Teaching Staff</a></li>
+                  <li><a href="#">Disclaimer</a></li>
+                  <li><a href="#">Anti Ragging Committee</a></li>
+                  <li><a href="#">Research Policy</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <div class="apply-now-button-mobile"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Hamburger menu toggle
+      const menu = document.getElementById("mobileMenu");
+      const openBtn = document.getElementById("openMenuBtn");
+      const closeBtn = document.getElementById("closeMenuBtn");
+
+      openBtn.addEventListener("click", () => {
+        menu.classList.add("active");
+        openBtn.classList.add("hide");
+        closeBtn.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        menu.classList.remove("active");
+        closeBtn.classList.remove("active");
+        setTimeout(() => {
+          openBtn.classList.remove("hide");
+        }, 400);
+      });
+
+      // Accordion logic
+      const accordionToggles = document.querySelectorAll(".accordion-toggle1");
+
+      accordionToggles.forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          const submenu = toggle.nextElementSibling;
+          const isOpen = toggle.classList.contains("active");
+          const parentMenu = toggle.closest(".submenu");
+
+          // Close other accordions at the same level
+          const siblingToggles = parentMenu
+            ? parentMenu.querySelectorAll(":scope > .accordion-item > .accordion-toggle1")
+            : toggle.closest(".accordion-menu").querySelectorAll(":scope > .accordion-item > .accordion-toggle1");
+
+          siblingToggles.forEach((other) => {
+            if (other !== toggle) {
+              other.classList.remove("active");
+              const otherSubmenu = other.nextElementSibling;
+              otherSubmenu.style.height = "0px";
+              otherSubmenu.classList.remove("open");
+            }
+          });
+
+          // Toggle current accordion
+          if (isOpen) {
+            toggle.classList.remove("active");
+            submenu.style.height = submenu.scrollHeight + "px";
+            requestAnimationFrame(() => {
+              submenu.style.height = "0px";
+            });
+            submenu.classList.remove("open");
+          } else {
+            toggle.classList.add("active");
+            submenu.style.height = submenu.scrollHeight + "px";
+            submenu.classList.add("open");
+
+            submenu.addEventListener(
+              "transitionend",
+              () => {
+                if (toggle.classList.contains("active")) {
+                  submenu.style.height = "auto";
+                }
+              },
+              { once: true }
+            );
+
+            // Smooth scroll to the submenu
+            setTimeout(() => {
+              submenu.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }, 100);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
