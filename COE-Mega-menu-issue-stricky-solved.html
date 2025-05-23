@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Three-Level Vertical Tabs</title>
+    <style>
+      .megamenuClassCoe {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        position: relative;
+        z-index: 100;
+      }
+
+      .vertical-menu {
+        flex: 1;
+        border-right: 1px solid #ddd;
+        padding: 10px;
+        box-sizing: border-box;
+        overflow-y: auto;
+      }
+
+      .menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        width: 100%;
+        padding: 10px 20px;
+        border: none;
+        background-color: #f0f0f000;
+        color: #333;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 25px;
+        border-bottom: 2px solid rgb(169, 169, 169);
+      }
+
+      .menu-btn.active {
+        background-color: #1464ab;
+        color: #fff;
+      }
+
+      .menu-btn:hover {
+        background-color: #ddd;
+        color: #1464ab !important;
+      }
+
+      .content {
+        display: none;
+        margin-top: 10px;
+        background-color: #f9f9f9;
+      }
+
+      .content.active {
+        display: block;
+      }
+
+      .content h4 {
+        width: 90%;
+        padding: 8px 20px;
+        margin: 5px 0;
+        border: none;
+        background-color: #f0f0f000;
+        color: #333;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-bottom: 2px solid rgb(169, 169, 169);
+      }
+
+      .content h4:hover {
+        background-color: #ddd;
+        color: #1464ab !important;
+      }
+
+      .content h4 a {
+        text-decoration: none;
+        color: #464646;
+        font-weight: 400;
+        font-size: 17px;
+      }
+
+      .content h4 a:hover {
+        color: #1464ab !important;
+      }
+
+      #ugBtn {
+        font-size: 19px;
+      }
+      #pgBtn {
+        font-size: 19px;
+      }
+      #ugContent {
+        height: 100vh;
+        overflow-y: auto;
+        padding: 20px;
+      }
+
+      #ugContent::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      #ugContent::-webkit-scrollbar-thumb {
+        background: #007bff;
+        border-radius: 6px;
+      }
+
+      #ugContent::-webkit-scrollbar-thumb:hover {
+        background: #0056b3;
+      }
+
+      #ugContent::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 6px;
+      }
+
+      #ugContent h4 {
+        width: 90%;
+        padding: 5px 5px;
+        margin: 0px 0px;
+        border: none;
+        background-color: #e2e2e200;
+        color: #333;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-bottom: 1px solid rgb(169, 169, 169);
+      }
+      #ugContent h4 a {
+        font-size: 14px;
+      }
+      #pgContent h4 {
+        width: 90%;
+        padding: 3px 3px;
+        margin: 0px 0px;
+        border: none;
+        background-color: #e2e2e200;
+        color: #333;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-bottom: 1px solid rgb(169, 169, 169);
+      }
+      #pgContent h4 a {
+        font-size: 14px;
+      }
+
+      /* Sticky header compatibility */
+      .mfn-header-scrolled .mfn-header-tmpl.mfn-hasSticky .megamenuClassCoe {
+        z-index: 9999 !important;
+        position: relative;
+        overflow: visible !important;
+      }
+
+      .mfn-header-scrolled .mfn-header-tmpl.mfn-hasSticky .vertical-menu,
+      .mfn-header-scrolled .mfn-header-tmpl.mfn-hasSticky .content {
+        position: relative;
+        overflow: visible !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="megamenuClassCoe">
+      <!-- First-Level Menu -->
+      <div id="firstLevelMenu" class="vertical-menu">
+        <button id="coeBtn" class="menu-btn active">
+          College of Engineering
+          <img
+            class="arrowIcon"
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/arrow-icon-mega-menu-2.svg"
+            alt=""
+            width="40px"
+          />
+        </button>
+        <button id="rcBtn" class="menu-btn">
+          Research Centre
+          <img
+            class="arrowIcon"
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/arrow-icon-mega-menu-2.svg"
+            alt=""
+            width="40px"
+          />
+        </button>
+        <button id="somBtn" class="menu-btn">
+          School of Management
+          <img
+            class="arrowIcon"
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/arrow-icon-mega-menu-2.svg"
+            alt=""
+            width="40px"
+          />
+        </button>
+        <button id="saceBtn" class="menu-btn">
+          School of Advance Careers
+          <img
+            class="arrowIcon"
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/arrow-icon-mega-menu-2.svg"
+            alt=""
+            width="40px"
+          />
+        </button>
+        <button id="ifBtn" class="menu-btn">
+          Incubation Foundation
+          <img
+            class="arrowIcon"
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/arrow-icon-mega-menu-2.svg"
+            alt=""
+            width="40px"
+          />
+        </button>
+      </div>
+
+      <!-- Second-Level Sub-Menu -->
+      <div id="secondLevelMenu" class="vertical-menu">
+        <button id="ugBtn" class="menu-btn">
+          Undergraduate
+          <img
+            class="arrowIcon"
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/arrow-icon-mega-menu-2.svg"
+            alt=""
+            width="40px"
+          />
+        </button>
+        <button id="pgBtn" class="menu-btn">
+          Postgraduate
+          <img
+            class="arrowIcon"
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/arrow-icon-mega-menu-2.svg"
+            alt=""
+            width="40px"
+          />
+        </button>
+      </div>
+
+      <!-- Third-Level Content Area -->
+      <div id="thirdLevelContent" class="vertical-menu">
+        <!-- Undergraduate Department -->
+        <div id="ugContent" class="content">
+          <h4><a href="#">Overview</a></h4>
+          <h4>
+            <a href="#">Electrical and Electronics Engineering Department</a>
+          </h4>
+          <h4>
+            <a href="#">Electronics and Communication Engineering Department</a>
+          </h4>
+          <h4><a href="#">Computer Science and Engineering Department </a></h4>
+          <h4><a href="#">Information Technology Department</a></h4>
+          <h4><a href="#">Mechanical Engineering Department</a></h4>
+          <h4><a href="#">Chemical Engineering Department</a></h4>
+          <h4><a href="#">Biomedical Engineering Department</a></h4>
+          <h4><a href="#">Civil Engineering Department</a></h4>
+          <h4><a href="#">English Department</a></h4>
+          <h4><a href="#">Mathematics Department</a></h4>
+          <h4><a href="#">Physics Department</a></h4>
+          <h4><a href="#">Chemistry Department</a></h4>
+        </div>
+        <!-- Undergraduate Department End-->
+
+        <!-- Post Graduate Content -->
+        <div id="pgContent" class="content">
+          <h4><a href="#">M.E Power Electronics & Drive</a></h4>
+          <h4><a href="#">M.E Communication Systems</a></h4>
+          <h4><a href="#">M.E Computer Sci & Engineering</a></h4>
+          <h4><a href="#">M.Tech Information Technology</a></h4>
+          <h4><a href="#">M.E Manufacturing Engineering</a></h4>
+          <h4><a href="#">M.E Energy Engineering</a></h4>
+          <h4><a href="#">M.Tech Environmental Sci & Technology</a></h4>
+          <h4><a href="#">M.E Medical Electronics</a></h4>
+        </div>
+
+        <!-- Post Graduate Content End -->
+
+        <!-- Research Center Start -->
+        <div id="rcContent" class="content">
+          <h4><a href="#">About SSNRC</a></h4>
+          <h4><a href="#">People</a></h4>
+          <h4><a href="#">Research Program</a></h4>
+          <h4><a href="#">Research Statistics</a></h4>
+          <h4><a href="#">Contact Us</a></h4>
+        </div>
+        <!-- Research Center End -->
+
+        <!-- School Of Management Start -->
+        <div id="somContent" class="content">
+          <img
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2024/12/DSC_1101-1-1.jpg"
+            alt=""
+            width="500px"
+          />
+          <h4><a href="#">Visit School Of Management</a></h4>
+        </div>
+
+        <!-- School Of Management End -->
+
+        <!-- School of Advance Careers Start -->
+        <div id="saceContent" class="content">
+          <img
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/image-22.png"
+            alt=""
+            width="500px"
+          />
+          <h4><a href="#">Visit School Of Advance Careers</a></h4>
+        </div>
+        <!-- School of Advance Careers End -->
+
+        <!-- Incubation start -->
+        <div id="ifContent" class="content">
+          <img
+            src="https://imaginetventures.org/projects/ssn/wp-content/uploads/2025/01/November_11zon-scaled-1.jpg"
+            alt=""
+            width="500px"
+          />
+          <h4><a href="#">Visit Incubation Foundation</a></h4>
+        </div>
+        <!-- Incubation End -->
+      </div>
+    </div>
+    <script>
+      jQuery(document).ready(function($) {
+        function initializeMegaMenu() {
+          // Selectors for both headers
+          const $firstLevelBtns = $('.megamenuClassCoe .menu-btn');
+          const $secondLevelMenu = $('.megamenuClassCoe #secondLevelMenu');
+          const $secondLevelBtns = $('.megamenuClassCoe #secondLevelMenu .menu-btn');
+          const $contentSections = $('.megamenuClassCoe #thirdLevelContent .content');
+
+          function clearActiveButtons($buttons) {
+            $buttons.removeClass('active');
+          }
+
+          // Event delegation for first-level buttons
+          $(document).off('click', '.megamenuClassCoe .menu-btn').on('click', '.megamenuClassCoe .menu-btn', function(e) {
+            const $this = $(this);
+
+            if ($this.is('#coeBtn')) {
+              clearActiveButtons($firstLevelBtns);
+              $this.addClass('active');
+              clearActiveButtons($secondLevelBtns);
+              $contentSections.removeClass('active');
+              $secondLevelMenu.css('display', 'block');
+            } else if ($this.is('#rcBtn')) {
+              clearActiveButtons($firstLevelBtns);
+              $this.addClass('active');
+              $secondLevelMenu.css('display', 'none');
+              $contentSections.removeClass('active');
+              $('.megamenuClassCoe #rcContent').addClass('active');
+            } else if ($this.is('#somBtn')) {
+              clearActiveButtons($firstLevelBtns);
+              $this.addClass('active');
+              $secondLevelMenu.css('display', 'none');
+              $contentSections.removeClass('active');
+              $('.megamenuClassCoe #somContent').addClass('active');
+            } else if ($this.is('#saceBtn')) {
+              clearActiveButtons($firstLevelBtns);
+              $this.addClass('active');
+              $secondLevelMenu.css('display', 'none');
+              $contentSections.removeClass('active');
+              $('.megamenuClassCoe #saceContent').addClass('active');
+            } else if ($this.is('#ifBtn')) {
+              clearActiveButtons($firstLevelBtns);
+              $this.addClass('active');
+              $secondLevelMenu.css('display', 'none');
+              $contentSections.removeClass('active');
+              $('.megamenuClassCoe #ifContent').addClass('active');
+            } else if ($this.is('#ugBtn')) {
+              clearActiveButtons($secondLevelBtns);
+              $this.addClass('active');
+              $contentSections.removeClass('active');
+              $('.megamenuClassCoe #ugContent').addClass('active');
+            } else if ($this.is('#pgBtn')) {
+              clearActiveButtons($secondLevelBtns);
+              $this.addClass('active');
+              $contentSections.removeClass('active');
+              $('.megamenuClassCoe #pgContent').addClass('active');
+            }
+          });
+
+          // Initialize default state
+          $secondLevelMenu.css('display', 'block');
+          $('.megamenuClassCoe #coeBtn').addClass('active');
+        }
+
+        // Initial setup
+        initializeMegaMenu();
+
+        // Periodically check for sticky header
+        setInterval(function() {
+          if ($('.mfn-header-scrolled .mfn-header-tmpl.mfn-hasSticky .megamenuClassCoe').length) {
+            initializeMegaMenu();
+          }
+        }, 500);
+
+        // Reinitialize on scroll
+        $(window).on('scroll', function() {
+          if ($('.mfn-header-scrolled .mfn-header-tmpl.mfn-hasSticky .megamenuClassCoe').length) {
+            initializeMegaMenu();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
