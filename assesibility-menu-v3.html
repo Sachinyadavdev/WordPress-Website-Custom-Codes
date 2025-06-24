@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Button with Popup Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        overflow-x: hidden;
+      }
+      #rndxyz_stickyButton {
+        position: fixed;
+        bottom: 8px;
+        right: 8px;
+        z-index: 50;
+        border: none;
+        background: none;
+        cursor: pointer;
+      }
+      #rndxyz_stickyButton img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      #rndxyz_popup {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 320px;
+        background-color: #fdffff;
+        box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        overflow-y: auto;
+        transition: transform 0.3s ease-in-out;
+        z-index: 40;
+      }
+      .rndxyz_popup-hidden {
+        transform: translateX(100%);
+      }
+      .rndxyz_popup-visible {
+        transform: translateX(0);
+      }
+      #rndxyz_closeButton {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #4b5563;
+      }
+      #rndxyz_closeButton:hover {
+        color: #1f2937;
+      }
+      #rndxyz_closeButton svg {
+        width: 25px;
+        height: 25px;
+        color: #eb5555;
+      }
+      #h2ID{
+        font-size: 26px !important;
+       
+        color: #1f2937;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+      #rndxyz_contactForm {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+     
+      .rndxyz_features {
+        margin-top: 24px;
+      }
+      .rndxyz_features h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 8px;
+      }
+      .rndxyz_features ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 40px !important;
+      }
+      .rndxyz_features a {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .rndxyz_features a:hover {
+        text-decoration: underline;
+      }
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        #rndxyz_stickyButton {
+          bottom: 15px;
+          right: 15px;
+        }
+        #rndxyz_stickyButton img {
+          width: 45px;
+          height: 45px;
+        }
+        #rndxyz_popup {
+          width: 100%;
+          max-width: 300px;
+          padding: 16px;
+        }
+        #h2ID {
+          font-size: 20px;
+        }
+        #rndxyz_closeButton svg {
+          width: 18px;
+          height: 18px;
+        }
+       
+        .rndxyz_features h3 {
+          font-size: 15px;
+        }
+        
+        .rndxyz_features a {
+          font-size: 13px;
+        }
+      }
+      @media (max-width: 480px) {
+        #rndxyz_stickyButton {
+          bottom: 10px;
+          right: 10px;
+        }
+        #rndxyz_stickyButton img {
+          width: 40px;
+          height: 40px;
+        }
+        #rndxyz_popup {
+          width: 100%;
+          padding: 12px;
+        }
+       #h2ID {
+          font-size: 18px;
+        }
+        #rndxyz_closeButton {
+          top: 10px;
+          right: 10px;
+        }
+        #rndxyz_closeButton svg {
+          width: 16px;
+          height: 16px;
+        }
+       
+        .rndxyz_features {
+          margin-top: 20px;
+        }
+        .rndxyz_features ul{
+            margin-bottom: 40px !important;
+        }
+        .rndxyz_features h3 {
+          font-size: 14px;
+        }
+        .rndxyz_features a {
+          font-size: 12px;
+        }
+      }
+
+      /* Additional CSS for layout */
+      .left-side-column {
+        width: 50%;
+      }
+      .right-side-column {
+        width: 45%;
+        text-align: center;
+      }
+
+      /* Fancy Box CSS */
+
+      .fancy-map-box {
+        text-decoration: none;
+      }
+
+      .fancy-box {
+        background: linear-gradient(135deg, #0365ad, #8f94fb);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        max-width: 300px;
+        text-align: center;
+        margin: 0px auto;
+        
+      }
+
+      .fancy-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .fancy-box h3 {
+        color: #ffffff;
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+
+      .fancy-box p {
+        font-size: 14px;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sticky Button -->
+    <button id="rndxyz_stickyButton">
+      <img src="Accessibility.svg.png" alt="Open Form" />
+    </button>
+
+    <!-- Popup Form -->
+    <div id="rndxyz_popup" class="rndxyz_popup-hidden">
+      <!-- Close Button -->
+      <button id="rndxyz_closeButton">
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+
+      <!-- Form -->
+      <br />
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div class="left-side-column">
+          <h2 id="h2ID" style="color: #0365ad; font-size: 24px">SSN Enquiry Form</h2>
+        </div>
+
+        <div class="right-side-column">
+          <img src="SSN-Harish-Sir-Whatsapp-QR-Code.png" alt="" width="100px" />
+        </div>
+      </div>
+      <h4 id="h4ID" style="color: #0365ad">Fill the form to Download the Brochure</h4>
+
+      <!-- Form Short Code Here Start -->
+
+
+      <!-- Form Short Code Here End -->
+      
+      <!-- Additional Features -->
+      <br />
+      <hr />
+      <div class="rndxyz_features">
+        <!-- <h3>Explore More</h3> -->
+        <ul>
+          <a
+            href="https://imaginetventures.org/projects/ssn/campus-map/"
+            target="_blank"
+            class="fancy-map-box"
+          >
+            <div class="fancy-box">
+              <h3>📍 View Our Campus</h3>
+              <p>Click to explore the Campus map</p>
+            </div>
+          </a>
+
+            <a
+            href="https://qrco.de/bg5a78"
+            target="_blank"
+            class="fancy-map-box"
+          >
+            <div class="fancy-box">
+              <h3>📞 Chat On Whatsapp</h3>
+              <p>Click here to chat on Whatsapp</p>
+            </div>
+          </a>
+
+            <a
+            href=""
+            target=""
+            class="fancy-map-box"
+          >
+            <div class="fancy-box">
+              <h3>💬 Chat With SSN AI</h3>
+              <p>Click here to chat with SSN AI Chat Bot</p>
+            </div>
+          </a>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      const stickyButton = document.getElementById("rndxyz_stickyButton");
+      const popup = document.getElementById("rndxyz_popup");
+      const closeButton = document.getElementById("rndxyz_closeButton");
+      const contactForm = document.getElementById("rndxyz_contactForm");
+
+      stickyButton.addEventListener("click", () => {
+        if (popup.classList.contains("rndxyz_popup-hidden")) {
+          popup.classList.remove("rndxyz_popup-hidden");
+          popup.classList.add("rndxyz_popup-visible");
+        } else {
+          popup.classList.remove("rndxyz_popup-visible");
+          popup.classList.add("rndxyz_popup-hidden");
+        }
+      });
+
+      closeButton.addEventListener("click", () => {
+        popup.classList.remove("rndxyz_popup-visible");
+        popup.classList.add("rndxyz_popup-hidden");
+      });
+
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Form submitted successfully!");
+        contactForm.reset();
+        popup.classList.remove("rndxyz_popup-visible");
+        popup.classList.add("rndxyz_popup-hidden");
+      });
+    </script>
+  </body>
+</html>
