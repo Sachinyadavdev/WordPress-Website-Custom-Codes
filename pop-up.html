@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Popups with Lightbox</title>
+  <style>
+    /* Popup container */
+    .xai-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1001; /* Above lightbox */
+      max-width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      width: 500px; /* Default width for desktop */
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth animation */
+      box-sizing: border-box;
+    }
+
+    /* Popup visible state */
+    .xai-popup.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Dynamic lightbox overlay */
+    .xai-lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+      z-index: 1000; /* Below popup */
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .xai-lightbox.active {
+      opacity: 1;
+    }
+
+    /* Close button */
+    .xai-popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 30px;
+      text-align: center;
+      transition: transform 0.2s ease; /* Smooth hover effect */
+    }
+
+    .xai-popup-close:hover {
+      transform: scale(1.1); /* Slight zoom on hover */
+    }
+
+    /* Trigger elements */
+    .xai-popup-trigger {
+      cursor: pointer;
+    }
+
+    /* Mobile-responsive adjustments */
+    @media (max-width: 768px) {
+      .xai-popup {
+        width: 85%; /* Slightly narrower for tablets */
+        padding: 15px;
+      }
+      .xai-popup-close {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        line-height: 28px;
+      }
+      .xai-popup h2 {
+        font-size: 1.5em; /* Smaller heading */
+      }
+      .xai-popup p {
+        font-size: 0.9em; /* Smaller text */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .xai-popup {
+        width: 90%; /* Full-width for small screens */
+        padding: 12px;
+        max-height: 70vh; /* Prevent overflow on small screens */
+      }
+      .xai-popup-close {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+        line-height: 24px;
+      }
+      .xai-popup h2 {
+        font-size: 1.2em;
+      }
+      .xai-popup p {
+        font-size: 0.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Example trigger elements (to be replaced by Elementor elements) -->
+  <div id="trigger-popup1" class="xai-popup-trigger">Click this text to open Popup 1</div>
+  <div id="trigger-popup2" class="xai-popup-trigger">Click this text to open Popup 2</div>
+  <div id="trigger-popup3" class="xai-popup-trigger">Click this text to open Popup 3</div>
+  <div id="trigger-popup4" class="xai-popup-trigger">Click this text to open Popup 4</div>
+
+  <!-- Popup 1 -->
+  <div class="xai-popup" id="popup1">
+    <button class="xai-popup-close" id="close-popup1">X</button>
+    <h2>Popup 1</h2>
+    <p>This is the content of the first popup. Add your custom content here.</p>
+  </div>
+
+  <!-- Popup 2 -->
+  <div class="xai-popup" id="popup2">
+    <button class="xai-popup-close" id="close-popup2">X</button>
+    <h2>Popup 2</h2>
+    <p>This is the content of the second popup. Customize as needed.</p>
+  </div>
+
+    <!-- Popup 3 -->
+  <div class="xai-popup" id="popup3">
+    <button class="xai-popup-close" id="close-popup3">X</button>
+    <h2>Popup 3</h2>
+    <p>This is the content of the second popup. Customize as needed.</p>
+  </div>
+
+    <!-- Popup 4 -->
+  <div class="xai-popup" id="popup4">
+    <button class="xai-popup-close" id="close-popup4">X</button>
+    <h2>Popup 4</h2>
+    <p>This is the content of the second popup. Customize as needed.</p>
+  </div>
+
+  <script>
+    // Get all trigger elements and close buttons
+    const triggers = document.querySelectorAll('.xai-popup-trigger');
+    const closeButtons = document.querySelectorAll('.xai-popup-close');
+
+    // Function to create and show lightbox
+    function showLightbox(popupId) {
+      // Create lightbox element
+      const lightbox = document.createElement('div');
+      lightbox.className = 'xai-lightbox';
+      lightbox.id = `xai-lightbox-${popupId}`;
+      document.body.appendChild(lightbox);
+
+      // Show lightbox with animation
+      setTimeout(() => {
+        lightbox.classList.add('active');
+      }, 10); // Small delay to trigger transition
+
+      // Close popup and lightbox on lightbox click
+      lightbox.addEventListener('click', () => {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+          popup.classList.remove('active');
+        }
+        lightbox.classList.remove('active');
+        setTimeout(() => {
+          lightbox.remove(); // Remove lightbox from DOM
+        }, 300); // Match transition duration
+      });
+    }
+
+    // Add click event listeners to triggers
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const triggerId = trigger.id; // e.g., trigger-popup1
+        const popupId = triggerId.replace('trigger-', ''); // e.g., popup1
+        const popup = document.getElementById(popupId);
+        
+        if (popup) {
+          popup.classList.add('active');
+          showLightbox(popupId); // Create and show lightbox
+        }
+      });
+    });
+
+    // Add click event listeners to close buttons
+    closeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const popupId = button.id.replace('close-', ''); // e.g., popup1
+        const popup = document.getElementById(popupId);
+        const lightbox = document.getElementById(`xai-lightbox-${popupId}`);
+        
+        if (popup) {
+          popup.classList.remove('active');
+        }
+        if (lightbox) {
+          lightbox.classList.remove('active');
+          setTimeout(() => {
+            lightbox.remove(); // Remove lightbox from DOM
+          }, 300); // Match transition duration
+        }
+      });
+    });
+  </script>
+</body>
+</html>
