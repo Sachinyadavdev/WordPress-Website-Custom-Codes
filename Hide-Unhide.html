@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hide and Unhide the Section Code</title>
+    <style>
+      #SecondSectionID,
+      #FirstSectionID {
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+
+      #SecondSectionID {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        width: 100%;
+      }
+
+      #SecondSectionID.active {
+        opacity: 1;
+        visibility: visible;
+        position: relative;
+      }
+
+      #FirstSectionID.hidden {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="FirstSectionID">
+      <!-- Your First Section Content -->
+      <button id="OpenButtonID">Open Second Section</button>
+    </div>
+
+    <div id="SecondSectionID">
+      <!-- Your Second Section Content -->
+      <button id="ClossButtonID">Close and Go Back</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const openBtn = document.getElementById("OpenButtonID");
+        const closeBtn = document.getElementById("ClossButtonID");
+        const firstSection = document.getElementById("FirstSectionID");
+        const secondSection = document.getElementById("SecondSectionID");
+
+        // Ensure second section is hidden by default
+        secondSection.classList.remove("active");
+        firstSection.classList.remove("hidden");
+
+        openBtn.addEventListener("click", function () {
+          firstSection.classList.add("hidden");
+          secondSection.classList.add("active");
+        });
+
+        closeBtn.addEventListener("click", function () {
+          secondSection.classList.remove("active");
+          firstSection.classList.remove("hidden");
+        });
+      });
+    </script>
+  </body>
+</html>
