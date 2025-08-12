@@ -1,0 +1,15 @@
+/* ---------- global scrollbar reset (WebKit browsers) ---------- */
+*::-webkit-scrollbar { width: 10px; height: 10px; background: transparent; }
+*::-webkit-scrollbar-button       { display: none !important; }
+*::-webkit-scrollbar-track        { background: transparent !important; background-image: none !important;
+                                    box-shadow: none !important; border: none !important; }
+*::-webkit-scrollbar-track-piece  { background: transparent !important; box-shadow: none !important; }
+*::-webkit-scrollbar-thumb        { background-color: #1976d2 !important; border-radius: 6px !important;
+                                    border: 2px solid transparent !important; box-shadow: none !important; }
+*::-webkit-scrollbar-corner      { background: transparent !important; box-shadow: none !important; }
+
+/* Firefox */
+html { scrollbar-width: thin; scrollbar-color: #1976d2 #ffffff; }
+
+/* keep layout stable (optional) */
+html, body { scrollbar-gutter: stable; }
