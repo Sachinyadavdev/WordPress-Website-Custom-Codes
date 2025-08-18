@@ -1,0 +1,31 @@
+/* Target your small Elementor button */
+a.elementor-button.elementor-button-link.elementor-size-sm{
+  --accent: #e85a00;   /* button color */
+  --bg: #0a0a0a;       /* the dark background behind the button */
+  
+  background: var(--accent) !important;
+  color: #fff !important;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: 14px 44px;           /* adjust as needed */
+  text-transform: uppercase;
+  border: none;
+  /* creates the right-side angled shape */
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%);
+  z-index: 1;
+}
+
+/* small dark angled piece under the right side (like in your image) */
+a.elementor-button.elementor-button-link.elementor-size-sm::after{
+  content: "";
+  position: absolute;
+  right: 6px;            /* how far the dark piece sits in */
+  bottom: -8px;          /* drop it slightly below for the effect */
+  width: 48px;
+  height: 14px;
+  background: var(--bg);
+  transform: skewX(-35deg);
+  z-index: -1;           /* sits behind the button */
+}
