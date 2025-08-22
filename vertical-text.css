@@ -1,0 +1,6 @@
+.verticalH {
+  writing-mode: vertical-rl;    /* vertical layout */
+  transform: rotate(180deg);    /* flips the text bottom to top */
+  text-align: center;
+  white-space: nowrap;
+}
