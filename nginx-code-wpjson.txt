@@ -1,0 +1,13 @@
+location / {
+    try_files $uri $uri/ /index.php?$args;
+}
+
+location ~* \.php$ {
+    fastcgi_pass  unix:/tmp/php-cgi.sock;
+    fastcgi_index index.php;
+    include fastcgi.conf;
+}
+
+location ~* /wp-json/ {
+    try_files $uri $uri/ /index.php?$args;
+}
